@@ -2,7 +2,7 @@ import {Injectable} from "@nestjs/common";
 import {BasicRepository} from "../../config/basic.interface";
 import {PostsEntity} from "../../domain/posts/posts.entity";
 import {InjectRepository} from "@nestjs/typeorm";
-import {FindOneOptions, FindOptionsWhere, Repository} from "typeorm";
+import {FindManyOptions, FindOneOptions, FindOptions, FindOptionsWhere, Repository} from "typeorm";
 
 @Injectable()
 export class PostsRepository implements BasicRepository<PostsEntity> {
@@ -11,15 +11,23 @@ export class PostsRepository implements BasicRepository<PostsEntity> {
         private readonly repo: Repository<PostsEntity>
     ) {}
 
-    find(where: FindOptionsWhere<PostsEntity>): Promise<PostsEntity[] | undefined> {
-        return this.repo.find({where})
+    find(options: FindManyOptions<PostsEntity>): Promise<PostsEntity[] | undefined> {
+        return this.repo.find(options)
     }
 
-    findOne(where: FindOneOptions<PostsEntity>): Promise<PostsEntity | undefined> {
-        return this.repo.findOne(where)
+    findOne(options: FindOneOptions<PostsEntity>): Promise<PostsEntity | undefined> {
+        return this.repo.findOne(options)
     }
 
-    save(data): Promise<PostsEntity> {
+    async findAndCount(options: FindManyOptions<PostsEntity>): Promise<[PostsEntity[], number]> {
+        return await this.repo.findAndCount(options)
+    }
+
+    async count(options: FindManyOptions<PostsEntity>): Promise<number> {
+        return await this.repo.count(options)
+    }
+
+    save(data: PostsEntity): Promise<PostsEntity> {
         return this.repo.save(data)
     }
 

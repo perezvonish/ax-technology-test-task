@@ -1,0 +1,26 @@
+{
+  "exceptions": {
+    "auth": {
+      "register": {
+        "already": "User already registered.",
+        "notTheSame": "Password and repeat password are not the same."
+      },
+      "login": {
+        "passwordIncorrect": "Password incorrect."
+      }
+
+    },
+    "user": {
+      "notFound": "User not found."
+    },
+    "posts": {
+      "notFound": "Post not found."
+    }
+  },
+  "validation": {
+    "isString": "Property have to be a string type.",
+    "isNumber": "Property have to be a number type.",
+    "isEmail": "Email have to be a valid e-mail address.",
+    "isStrongPassword": "Password must be min 8 length with 1 uppercase symbol and 1 spec. symbol."
+  }
+}

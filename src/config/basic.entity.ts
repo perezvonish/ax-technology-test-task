@@ -2,14 +2,14 @@ import {BaseEntity, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, 
 
 export class BasicEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: number
+    public id: number
 
     @CreateDateColumn()
-    createdAt: Date
+    public createdAt: Date
 
     @UpdateDateColumn()
-    updatedAt: Date
+    public updatedAt: Date
 
     @DeleteDateColumn()
-    deletedAt: Date
+    public deletedAt: Date
 }

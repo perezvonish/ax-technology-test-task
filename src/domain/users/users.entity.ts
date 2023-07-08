@@ -1,4 +1,4 @@
-import {Column, Entity, OneToMany} from "typeorm";
+import {Column, Entity, JoinTable, OneToMany} from "typeorm";
 import {BasicEntity} from "../../config/basic.entity";
 import {PostsEntity} from "../posts/posts.entity";
 
@@ -9,7 +9,7 @@ interface User  {
     posts: PostsEntity[];
 }
 
-@Entity()
+@Entity("users")
 export class UsersEntity extends BasicEntity implements User {
     @Column()
     email: string
@@ -17,9 +17,17 @@ export class UsersEntity extends BasicEntity implements User {
     @Column()
     password: string
 
-    @Column()
+    @Column({default: 0})
     rating: number
 
-    @OneToMany(() => PostsEntity, (post) => post.author)
+    @OneToMany(() => PostsEntity, (post) => post.author, {
+        cascade: ["insert", "update", "soft-remove"]
+    })
     posts: PostsEntity[]
+
+    constructor(email: string, password: string) {
+        super();
+        this.email = email
+        this.password = password
+    }
 }

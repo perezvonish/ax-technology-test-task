@@ -1,0 +1,12 @@
+{
+  "user": {
+    "notFound": "User not found",
+    "already exists": "User already exists"
+  },
+  "register": {
+    "passwordAreNotTheSame": "Password and repeat password are not the same"
+  },
+  "login": {
+    "passwordIncorrect": "Password incorrect"
+  }
+}

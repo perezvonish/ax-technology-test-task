@@ -1,8 +1,8 @@
-import {FindOneOptions, FindOptionsWhere} from "typeorm";
+import {FindManyOptions, FindOneOptions} from "typeorm";
 
 export interface BasicRepository<T> {
-    find(where: FindOptionsWhere<T>): Promise<T[] | undefined>
-    findOne(where: FindOneOptions<T>): Promise<T | undefined>
+    find(options: FindManyOptions<T>): Promise<T[] | undefined>
+    findOne(options: FindOneOptions<T>): Promise<T | undefined>
     save(data): Promise<T>
     softDelete(id: number): Promise<void>
 }
